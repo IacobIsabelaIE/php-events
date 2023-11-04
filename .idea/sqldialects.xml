@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/crud/create.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/crud/edit.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/crud/index.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/database/dao/EventDAO.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/view/ui/events/create-event.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/view/ui/events/index-event.php" dialect="MySQL" />
+    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

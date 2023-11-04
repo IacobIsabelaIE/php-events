@@ -1,15 +1,12 @@
 <?php
     session_start();
 ?>
-    <html>
+<html>
 <head>
     <title>Title</title>
-<!--    <link rel="stylesheet" href="css/sign-up.css">-->
+    <!--    <link rel="stylesheet" href="css/sign-up.css">-->
 </head>
 <body>
-
-
-
 
 <form action="signup.php" method="post" class="form_class" novalidate>
 
@@ -36,22 +33,17 @@
 
         </div>
 
-        
 
     </div>
 
     <div>
-        <button type="submit" name ="submit" class="button_login"> Sign up</button>
+        <button type="submit" name="submit" class="button_login"> Sign up</button>
     </div>
 
     <div class="login_div">
         <a href="indexLogin.php"> Already have an account? </a>
     </div>
 </form>
-
-
-
-
 
 
 </body>

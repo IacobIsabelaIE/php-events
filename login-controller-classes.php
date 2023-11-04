@@ -13,7 +13,7 @@
         
         public function loginUser(){
             if(!$this->emptyInput()){
-                header("location: index.php?error=emptyinput");
+                header("location: index-event.php?error=emptyinput");
                 exit();
             }
             $this->getUser($this->nutilizator, $this->email, $this->passwd);

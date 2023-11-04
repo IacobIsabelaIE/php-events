@@ -20,22 +20,22 @@
         public function signupUser()
         {
             if (!$this->emptyInput()) {
-                header("location: index.php?error=emptyinput");
+                header("location: index-event.php?error=emptyinput");
                 exit();
             }
             
             if (!$this->invalidNutilizator()) {
-                header("location: index.php?error=username");
+                header("location: index-event.php?error=username");
                 exit();
             }
             
             if (!$this->invalidEmail()) {
-                header("location: index.php?error=email");
+                header("location: index-event.php?error=email");
                 exit();
             }
             
             if (!$this->doesUserExist($this->nutilizator, $this->email)) {
-                header("location: index.php?error=useroremailtaken");
+                header("location: index-event.php?error=useroremailtaken");
                 exit();
             }
             

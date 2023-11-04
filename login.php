@@ -9,14 +9,14 @@
         
         
         //instantiem clasa din fisierul edit-db-signup-controller-classes.php ->SignupContr
-        include "dbh-classes.php";
+        include "DatabaseConnection.php";
         include "login-classes.php";
         include "login-controller-classes.php";
         
         $login = new LoginContr($nutilizator,$email, $passwd);
         
         $login->loginUser();
-        header("location: crud/index.php?error=none");
+        header("location: crud/index-event.php?error=none");
         
         
     }

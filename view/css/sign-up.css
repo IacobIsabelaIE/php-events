@@ -1,36 +1,29 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
-    background-image: url('css/background-image.jpg');
+    background-image: url('kground-image.jpg');
     background-size: cover;
     background-attachment: fixed;
-    color: #fff;
+
 
 }
+
 
 .form_class {
-    max-width: 800px;
+    background-color: #fff;
+    max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: transparent;
-    border: 2px solid #7a7777;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
-    margin-top: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .form_class h1 {
     color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
 }
 
-login_div {
+
+.login_div {
     margin: 10px 0;
 }
 
@@ -50,24 +43,8 @@ login_div {
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 16px;
 }
 
 .button_login:hover {
     background-color: #0056b3;
-}
-
-
-.input::placeholder {
-    color: #999;
-}
-
-
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-a:hover {
-    text-decoration: underline;
 }

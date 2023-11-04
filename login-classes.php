@@ -1,6 +1,6 @@
 <?php
     
-    class Login extends Dbh {
+    class Login extends DatabaseConnection {
         protected function getUser($nutilizator, $email, $passwd) {
             $stmt = $this->connect()->prepare('SELECT password_hash from administrator where nume_utilizator = ? AND e_mail = ? ;');
             
@@ -12,7 +12,7 @@
             
             if($stmt->rowCount() == 0){
                 $stmt = null;
-                header("location: index.php?error=usernotfound");
+                header("location: index-event.php?error=usernotfound");
                 exit();
             }
             
@@ -21,7 +21,7 @@
             
             if($checkPasswd == false){
                 $stmt = null;
-                header("location: index.php?error=wrongpassword");
+                header("location: index-event.php?error=wrongpassword");
                 exit();
             }
             
@@ -30,13 +30,13 @@
                 
                 if(!$stmt->execute(array($nutilizator, $email, $passwd))){
                     $stmt = null;
-                    header("location: index.php?error=stmtfailed");
+                    header("location: index-event.php?error=stmtfailed");
                     exit();
                 }
                 
                 if($stmt->rowCount() == 0){
                     $stmt = null;
-                    header("location: index.php?error=usernotfound");
+                    header("location: index-event.php?error=usernotfound");
                     exit();
                 }
                 

@@ -4,5 +4,5 @@
     session_unset();
     session_destroy();
     
-    header("location: index.php?error=none");
+    header("location: index-event.php?error=none");
     

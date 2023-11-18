@@ -48,7 +48,7 @@
         <button type="submit" name="submit" class="button_login">Inregistreaza-te ca administrator</button>
     </div>
     <div class="login_div">
-        <a href="indexLogin.php"> Ai deja un cont? Click aici pentru a te loga!</a>
+        <a href="login.php"> Ai deja un cont? Click aici pentru a te loga!</a>
     </div>
 </form>
 </body>

@@ -1,5 +1,10 @@
 <?php
+    
     session_start();
+    if (isset($_SESSION["nutilizator"]) && isset($_SESSION["id"])) {
+        header('Location: http://localhost/php-events/view/ui/events/events.php');
+    }
+    
     include("../../../database/DatabaseConnection.php");
     include("../../../database/dao/AdministratorDAO.php");
     include("../../../classes/models/Administrator.php");
@@ -14,37 +19,39 @@
         $loginSuccessful = $administratorDAO->loginAdministrator($admin);
     }
 ?>
-
 <html>
 <head>
-    <title>Title</title>
+
+    <title>TEST</title>
+    <!--    <link rel="stylesheet" href="css/login.css">-->
+
 </head>
+
 <body>
 <form method="post" class="form_class">
+
     <div>
-        <h1>Inregistreaza-te</h1>
+        <h1>LOGIN</h1>
+        
+
         <div class="login_div">
-            <input type="text" name="nutilizator" placeholder="Nume utilizator">
+            <input type="email" name="email" placeholder="E-mail" class="input">
+
         </div>
+
         <div class="login_div">
-            <input type="text" name="nume" placeholder="Nume">
+            <input type="password" name="password" placeholder="Parola" class="input">
+
         </div>
+
+        <button type="submit" name="submit" class="button_login">LOGIN</button>
+
         <div class="login_div">
-            <input type="text" name="prenume" placeholder="Prenume">
-        </div>
-        <div class="login_div">
-            <input type="email" name="email" placeholder="E-mail">
-        </div>
-        <div class="login_div">
-            <input type="password" name="passwd" placeholder="Parola">
+            <a href="index.php"> Create an account</a> <br>
+
         </div>
     </div>
-    <div>
-        <button type="submit" name="submit" class="button_login">Inregistreaza-te ca administrator</button>
-    </div>
-    <div class="login_div">
-        <a href="indexLogin.php"> Ai deja un cont? Click aici pentru a te loga!</a>
-    </div>
+
 </form>
 </body>
 </html>

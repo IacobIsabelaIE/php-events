@@ -1,6 +1,6 @@
 <?php
     
-    class AdministratorDAO
+    class AdministratorDB
     {
         
         private $dbConnection;
@@ -8,17 +8,17 @@
         /**
          * @param $dbConnection
          */
-        public function __construct(DatabaseConnection $dbConnection)
+        public function __construct(ConexiuneDB $dbConnection)
         {
             $this->dbConnection = $dbConnection;
         }
         
-        public function doesAdministratorExist(Administrator $administrator): bool
+        public function verificaAdministratorExistent(Administrator $administrator): bool
         {
             
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare('SELECT nume_utilizator FROM administrator WHERE nume_utilizator = ? OR e_mail = ?');
-            $userName = $administrator->getUserName();
+            $userName = $administrator->getNumeUtilizator();
             $email = $administrator->getEmail();
             
             $preparedStatement->bind_param("ss", $userName, $email);
@@ -35,23 +35,23 @@
             return false;
         }
         
-        public function addAdministrator(Administrator $administrator)
+        public function adaugaAdministrator(Administrator $administrator)
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("INSERT INTO administrator(nume_utilizator, nume,
                           prenume, e_mail, password_hash) VALUES(?,?,?,?,?);");
             
-            $userName = $administrator->getUserName();
-            $firstName = $administrator->getFirstName();
-            $lastName = $administrator->getLastName();
+            $numeUtilizator = $administrator->getNumeUtilizator();
+            $nume = $administrator->getNume();
+            $prenume = $administrator->getPrenume();
             $email = $administrator->getEmail();
             $password = password_hash($administrator->getPassword(), PASSWORD_BCRYPT);
             
-            $preparedStatement->bind_param("sssss", $userName, $firstName, $lastName, $email, $password);
+            $preparedStatement->bind_param("sssss", $numeUtilizator, $nume, $prenume, $email, $password);
             
-            $isInsertSuccessful = $preparedStatement->execute();
+            $succesInserare = $preparedStatement->execute();
             
-            if (!$isInsertSuccessful) {
+            if (!$succesInserare) {
                 print("Am intampinat o eroare la adaugarea administratorului={" . $preparedStatement->error . "}");
             } else {
                 print("Am adaugat administratorul");
@@ -82,10 +82,10 @@
                 return false;
             }
             
-            $isPasswordCorrect = password_verify($password, $fetchedResult["password_hash"]);
+            $parolaCorecta = password_verify($password, $fetchedResult["password_hash"]);
             
             // parola gresita
-            if (!$isPasswordCorrect) {
+            if (!$parolaCorecta) {
                 print("Parola introdusa este gresita");
                 return false;
             }

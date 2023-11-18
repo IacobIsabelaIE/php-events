@@ -1,22 +1,22 @@
 <?php
     session_start();
-    include("../../../database/DatabaseConnection.php");
-    include("../../../database/dao/AdministratorDAO.php");
-    include("../../../classes/models/Administrator.php");
-    include("../../../validation/AdministratorValidator.php");
+    include("../../../database/ConexiuneDB.php");
+    include("../../../database/acces-db/AdministratorDB.php");
+    include("../../../clase/entitati-db/Administrator.php");
+    include("../../../validation/ValidatorAdministrator.php");
     
-    $dbConnection = new DatabaseConnection();
-    $administratorDAO = new AdministratorDAO($dbConnection);
+    $dbConnection = new ConexiuneDB();
+    $administratorDAO = new AdministratorDB($dbConnection);
     $admin = new Administrator();
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $admin->setUserName($_POST["nutilizator"]);
-        $admin->setFirstName($_POST["nume"]);
-        $admin->setLastName($_POST["prenume"]);
+        $admin->setNumeUtilizator($_POST["nutilizator"]);
+        $admin->setNume($_POST["nume"]);
+        $admin->setPrenume($_POST["prenume"]);
         $admin->setEmail($_POST["email"]);
         $admin->setPassword($_POST["passwd"]);
-        AdministratorValidator::validateAdministrator($admin, $administratorDAO);
-        $administratorDAO->addAdministrator($admin);
+        ValidatorAdministrator::validateAdministrator($admin, $administratorDAO);
+        $administratorDAO->adaugaAdministrator($admin);
     }
 ?>
 

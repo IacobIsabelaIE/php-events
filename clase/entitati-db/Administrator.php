@@ -3,9 +3,9 @@
     class Administrator
     {
         private $administratorId;
-        private $userName;
-        private $firstName;
-        private $lastName;
+        private $numeUtilizator;
+        private $nume;
+        private $prenume;
         private $email;
         private $password;
         
@@ -28,49 +28,49 @@
         /**
          * @return mixed
          */
-        public function getUserName()
+        public function getNumeUtilizator()
         {
-            return $this->userName;
+            return $this->numeUtilizator;
         }
         
         /**
-         * @param mixed $userName
+         * @param mixed $numeUtilizator
          */
-        public function setUserName($userName)
+        public function setNumeUtilizator($numeUtilizator)
         {
-            $this->userName = $userName;
-        }
-        
-        /**
-         * @return mixed
-         */
-        public function getFirstName()
-        {
-            return $this->firstName;
-        }
-        
-        /**
-         * @param mixed $firstName
-         */
-        public function setFirstName($firstName)
-        {
-            $this->firstName = $firstName;
+            $this->numeUtilizator = $numeUtilizator;
         }
         
         /**
          * @return mixed
          */
-        public function getLastName()
+        public function getNume()
         {
-            return $this->lastName;
+            return $this->nume;
         }
         
         /**
-         * @param mixed $lastName
+         * @param mixed $nume
          */
-        public function setLastName($lastName)
+        public function setNume($nume)
         {
-            $this->lastName = $lastName;
+            $this->nume = $nume;
+        }
+        
+        /**
+         * @return mixed
+         */
+        public function getPrenume()
+        {
+            return $this->prenume;
+        }
+        
+        /**
+         * @param mixed $prenume
+         */
+        public function setPrenume($prenume)
+        {
+            $this->prenume = $prenume;
         }
         
         /**

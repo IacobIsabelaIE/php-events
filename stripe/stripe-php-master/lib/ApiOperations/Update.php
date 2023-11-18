@@ -6,7 +6,7 @@ namespace Stripe\ApiOperations;
  * Trait for updatable resources. Adds an `update()` static method and a
  * `save()` method to the class.
  *
- * This trait should only be applied to classes that derive from StripeObject.
+ * This trait should only be applied to clase that derive from StripeObject.
  */
 trait Update
 {

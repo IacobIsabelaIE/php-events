@@ -1,18 +1,18 @@
 <?php
     session_start();
-    include("../../../database/DatabaseConnection.php");
-    include("../../../database/dao/EventDAO.php");
-    include("../../../classes/models/Event.php");
-    include("../../../validation/EventValidator.php");
+    include("../../../database/ConexiuneDB.php");
+    include("../../../database/acces-db/EvenimentDB.php");
+    include("../../../clase/entitati-db/Eveniment.php");
+    include("../../../validation/ValidatorEvenimente.php");
     
     if (!isset($_SESSION["nutilizator"]) && !isset($_SESSION["id"])) {
         header('Location: http://localhost/php-events/view/ui/authentication/login.php');
     }
     
-    $dbConnection = new DatabaseConnection();
-    $eventDAO = new EventDAO($dbConnection);
-    $event = new Event();
-    $eventValidator = new EventValidator();
+    $conexiuneDB = new ConexiuneDB();
+    $eventDB = new EvenimentDB($conexiuneDB);
+    $event = new Eveniment();
+    $eventValidator = new ValidatorEvenimente();
     
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (!isset($_GET["id"])) {
@@ -21,20 +21,20 @@
         }
         
         $id = $_GET["id"];
-        $event = $eventDAO->getEventById($id);
+        $event = $eventDB->cautaEvenimentDupaId($id);
         
     } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $event->setEventId($_POST["id"]);
-        $event->setEventTitle($_POST["titlu"]);
-        $event->setEventDescription($_POST["descriere"]);
-        $event->setDateTime($_POST["data_ora"]);
-        $event->setLocation($_POST["locatie"]);
-        $event->setPartner($_POST["parteneri"]);
+        $event->setTitluEveniment($_POST["titlu"]);
+        $event->setDescriereEveniment($_POST["descriere"]);
+        $event->setDataEveniment($_POST["data_ora"]);
+        $event->setLocatie($_POST["locatie"]);
+        $event->setPartener($_POST["parteneri"]);
         $event->setSponsor($_POST["sponsori"]);
-        $event->setEventPrice($_POST["pret"]);
+        $event->setPretEveniment($_POST["pret"]);
         
-        $eventValidator::validateEvent($event);
-        $success = $eventDAO->updateEvent($event);
+        $eventValidator::valideazaEveniment($event);
+        $success = $eventDB->updateEveniment($event);
         
         if ($success) {
             header("location: index-event.php");
@@ -67,33 +67,33 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Titlu</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="titlu" value="<?php echo $event->getEventTitle(); ?>">
+                <input type="text" class="form-control" name="titlu" value="<?php echo $event->getTitluEveniment(); ?>">
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Descriere</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="descriere"
-                       value="<?php echo $event->getEventDescription(); ?>">
+                       value="<?php echo $event->getDescriereEveniment(); ?>">
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Data_ora</label>
             <div class="col-sm-6">
                 <input type="datetime-local" class="form-control" name="data_ora"
-                       value="<?php echo $event->getDateTime(); ?>">
+                       value="<?php echo $event->getDataEveniment(); ?>">
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Locatie</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="locatie" value="<?php echo $event->getLocation(); ?>">
+                <input type="text" class="form-control" name="locatie" value="<?php echo $event->getLocatie(); ?>">
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Parteneri</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="parteneri" value="<?php echo $event->getPartner(); ?>">
+                <input type="text" class="form-control" name="parteneri" value="<?php echo $event->getPartener(); ?>">
             </div>
         </div>
         <div class="row mb-3">
@@ -105,7 +105,7 @@
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Pret bilet eveniment</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="pret" value="<?php echo $event->getEventPrice(); ?>">
+                <input type="text" class="form-control" name="pret" value="<?php echo $event->getPretEveniment(); ?>">
             </div>
         </div>
         <?php

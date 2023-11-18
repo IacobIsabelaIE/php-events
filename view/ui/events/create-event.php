@@ -1,30 +1,30 @@
 <?php
     session_start();
-    include("../../../database/DatabaseConnection.php");
-    include("../../../database/dao/EventDAO.php");
-    include("../../../classes/models/Event.php");
-    include("../../../validation/EventValidator.php");
+    include("../../../database/ConexiuneDB.php");
+    include("../../../database/acces-db/EvenimentDB.php");
+    include("../../../clase/entitati-db/Eveniment.php");
+    include("../../../validation/ValidatorEvenimente.php");
     
     if (!isset($_SESSION["nutilizator"]) && !isset($_SESSION["id"])) {
         header('Location: http://localhost/php-events/view/ui/authentication/login.php');
     }
     
-    $dbConnection = new DatabaseConnection();
-    $eventDAO = new EventDAO($dbConnection);
-    $event = new Event();
+    $conexiune = new ConexiuneDB();
+    $evenimentDB = new EvenimentDB($conexiune);
+    $event = new Eveniment();
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
-        $event->setEventTitle($_POST["titlu"]);
-        $event->setEventDescription($_POST["descriere"]);
-        $event->setDateTime($_POST["data_ora"]);
-        $event->setLocation($_POST["locatie"]);
-        $event->setPartner($_POST["parteneri"]);
+        $event->setTitluEveniment($_POST["titlu"]);
+        $event->setDescriereEveniment($_POST["descriere"]);
+        $event->setDataEveniment($_POST["data_ora"]);
+        $event->setLocatie($_POST["locatie"]);
+        $event->setPartener($_POST["parteneri"]);
         $event->setSponsor($_POST["sponsori"]);
-        $event->setEventPrice($_POST["pret"]);
+        $event->setPretEveniment($_POST["pret"]);
         
-        EventValidator::validateEvent($event);
-        $eventDAO->addNewEvent($event);
+        ValidatorEvenimente::valideazaEveniment($event);
+        $evenimentDB->adaugaEveniment($event);
         
     }
 ?>

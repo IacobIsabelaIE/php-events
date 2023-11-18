@@ -7,7 +7,7 @@ namespace Stripe\Util;
 class ObjectTypes
 {
     /**
-     * @var array Mapping from object types to resource classes
+     * @var array Mapping from object types to resource clase
      */
     const mapping = [
         \Stripe\Account::OBJECT_NAME => \Stripe\Account::class,

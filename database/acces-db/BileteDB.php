@@ -1,6 +1,6 @@
 <?php
     
-    class TicketDAO
+    class BileteDB
     {
         
         private $dbConnection;
@@ -8,12 +8,12 @@
         /**
          * @param $dbConnection
          */
-        public function __construct(DatabaseConnection $dbConnection)
+        public function __construct(ConexiuneDB $dbConnection)
         {
             $this->dbConnection = $dbConnection;
         }
         
-        public function buyTicket(Ticket $ticket)
+        public function cumparaTicket(Bilet $ticket)
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("INSERT INTO bilete
@@ -21,20 +21,20 @@
             (?, ?, ?, ?, ?, ?, ?)");
             
             $preparedStatement->bind_param("isssssi", $eventId,
-                $firstName, $lastName, $email,
-                $acquisitionDate, $eventDate, $ticketPrice);
+                $nume, $prenume, $email,
+                $dataAchizitie, $dataEveniment, $pretTicket);
             
             $eventId = $ticket->getEventId();
-            $firstName = $ticket->getFirstName();
-            $lastName = $ticket->getLastName();
+            $nume = $ticket->getNume();
+            $prenume = $ticket->getPrenume();
             $email = $ticket->getEmail();
-            $acquisitionDate = date("Y-m-d H:i:s");
-            $eventDate = $ticket->getEventDate();
-            $ticketPrice = $ticket->getTicketPrice();
+            $dataAchizitie = date("Y-m-d H:i:s");
+            $dataEveniment = $ticket->getDataEveniment();
+            $pretTicket = $ticket->getPretBilet();
             
-            $isInsertSuccessful = $preparedStatement->execute();
+            $succesInserare = $preparedStatement->execute();
             
-            if (!$isInsertSuccessful) {
+            if (!$succesInserare) {
                 print("Am intampinat o eroare la adaugarea biletului={" . $preparedStatement->error . "}");
             } else {
                 print("Am adaugat biletul pentru client");

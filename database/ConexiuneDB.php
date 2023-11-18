@@ -4,7 +4,7 @@
      * Clasa responsabila cu conexiunea la baza de date
      * Toate campurile sunt constante
      */
-    class DatabaseConnection
+    class ConexiuneDB
     {
         
         const DATABASE_HOST_NAME = "localhost";

@@ -1,16 +1,16 @@
 <?php
     
-    class Ticket
+    class Bilet
     {
         private $ticketId;
         private $eventId;
-        private $firstName;
-        private $lastName;
+        private $nume;
+        private $prenume;
         private $email;
-        private $acquisitionDate;
-        private $eventDate;
-        private $ticketPrice;
-        private $referenceId;
+        private $dataAchizitie;
+        private $dataEveniment;
+        private $pretBilet;
+        private $referintaId;
         
         /**
          * @return mixed
@@ -47,33 +47,33 @@
         /**
          * @return mixed
          */
-        public function getFirstName()
+        public function getNume()
         {
-            return $this->firstName;
+            return $this->nume;
         }
         
         /**
-         * @param mixed $firstName
+         * @param mixed $nume
          */
-        public function setFirstName($firstName)
+        public function setNume($nume)
         {
-            $this->firstName = $firstName;
+            $this->nume = $nume;
         }
         
         /**
          * @return mixed
          */
-        public function getLastName()
+        public function getPrenume()
         {
-            return $this->lastName;
+            return $this->prenume;
         }
         
         /**
-         * @param mixed $lastName
+         * @param mixed $prenume
          */
-        public function setLastName($lastName)
+        public function setPrenume($prenume)
         {
-            $this->lastName = $lastName;
+            $this->prenume = $prenume;
         }
         
         /**
@@ -95,65 +95,65 @@
         /**
          * @return mixed
          */
-        public function getAcquisitionDate()
+        public function getDataAchizitie()
         {
-            return $this->acquisitionDate;
+            return $this->dataAchizitie;
         }
         
         /**
-         * @param mixed $acquisitionDate
+         * @param mixed $dataAchizitie
          */
-        public function setAcquisitionDate($acquisitionDate)
+        public function setDataAchizitie($dataAchizitie)
         {
-            $this->acquisitionDate = $acquisitionDate;
-        }
-        
-        /**
-         * @return mixed
-         */
-        public function getEventDate()
-        {
-            return $this->eventDate;
-        }
-        
-        /**
-         * @param mixed $eventDate
-         */
-        public function setEventDate($eventDate)
-        {
-            $this->eventDate = $eventDate;
+            $this->dataAchizitie = $dataAchizitie;
         }
         
         /**
          * @return mixed
          */
-        public function getReferenceId()
+        public function getDataEveniment()
         {
-            return $this->referenceId;
+            return $this->dataEveniment;
         }
         
         /**
-         * @param mixed $referenceId
+         * @param mixed $dataEveniment
          */
-        public function setReferenceId($referenceId)
+        public function setDataEveniment($dataEveniment)
         {
-            $this->referenceId = $referenceId;
+            $this->dataEveniment = $dataEveniment;
         }
         
         /**
          * @return mixed
          */
-        public function getTicketPrice()
+        public function getReferintaId()
         {
-            return $this->ticketPrice;
+            return $this->referintaId;
         }
         
         /**
-         * @param mixed $ticketPrice
+         * @param mixed $referintaId
          */
-        public function setTicketPrice($ticketPrice)
+        public function setReferintaId($referintaId)
         {
-            $this->ticketPrice = $ticketPrice;
+            $this->referintaId = $referintaId;
+        }
+        
+        /**
+         * @return mixed
+         */
+        public function getPretBilet()
+        {
+            return $this->pretBilet;
+        }
+        
+        /**
+         * @param mixed $pretBilet
+         */
+        public function setPretBilet($pretBilet)
+        {
+            $this->pretBilet = $pretBilet;
         }
         
     }

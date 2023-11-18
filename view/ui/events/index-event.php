@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include("../../../database/DatabaseConnection.php");
-    include("../../../database/dao/EventDAO.php");
-    include("../../../classes/models/Event.php");
+    include("../../../database/ConexiuneDB.php");
+    include("../../../database/acces-db/EvenimentDB.php");
+    include("../../../clase/entitati-db/Eveniment.php");
     
     if (!isset($_SESSION["nutilizator"]) && !isset($_SESSION["id"])) {
         header('Location: http://localhost/php-events/view/ui/authentication/login.php');
@@ -38,19 +38,19 @@
         </thead>
         <tbody>
         <?php
-            $dbConnection = new DatabaseConnection();
-            $eventRepository = new EventDAO($dbConnection);
-            $events = $eventRepository->getAllEvents();
+            $conexiuneDB = new ConexiuneDB();
+            $eventDB = new EvenimentDB($conexiuneDB);
+            $events = $eventDB->cautaToateEvenimentele();
             
             foreach ($events as $event) {
                 $eventId = $event->getEventId();
-                $eventTitle = $event->getEventTitle();
-                $eventDescription = $event->getEventDescription();
-                $eventDateTime = $event->getDateTime();
-                $eventLocation = $event->getLocation();
-                $eventPartner = $event->getPartner();
+                $eventTitle = $event->getTitluEveniment();
+                $eventDescription = $event->getDescriereEveniment();
+                $eventDateTime = $event->getDataEveniment();
+                $eventLocation = $event->getLocatie();
+                $eventPartner = $event->getPartener();
                 $eventSponsor = $event->getSponsor();
-                $eventPrice = $event->getEventPrice();
+                $eventPrice = $event->getPretEveniment();
                 echo "
                     <tr>
                       <td>$eventId</td>

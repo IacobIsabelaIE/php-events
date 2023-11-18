@@ -6,7 +6,7 @@ namespace Stripe\ApiOperations;
  * Trait for retrievable resources. Adds a `retrieve()` static method to the
  * class.
  *
- * This trait should only be applied to classes that derive from StripeObject.
+ * This trait should only be applied to clase that derive from StripeObject.
  */
 trait Retrieve
 {

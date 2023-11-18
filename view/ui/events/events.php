@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include("../../../database/DatabaseConnection.php");
-    include("../../../database/dao/EventDAO.php");
-    include("../../../classes/models/Event.php");
+    include("../../../database/ConexiuneDB.php");
+    include("../../../database/acces-db/EvenimentDB.php");
+    include("../../../clase/entitati-db/Eveniment.php");
     
 ?>
 
@@ -32,29 +32,29 @@
         </thead>
         <tbody>
         <?php
-            $dbConnection = new DatabaseConnection();
-            $eventRepository = new EventDAO($dbConnection);
-            $events = $eventRepository->getAllEvents();
+            $conexiuneDB = new ConexiuneDB();
+            $evenimentDB = new EvenimentDB($conexiuneDB);
+            $events = $evenimentDB->cautaToateEvenimentele();
             
             foreach ($events as $event) {
                 $eventId = $event->getEventId();
-                $eventTitle = $event->getEventTitle();
-                $eventDescription = $event->getEventDescription();
-                $eventDateTime = $event->getDateTime();
-                $eventLocation = $event->getLocation();
-                $eventPartner = $event->getPartner();
-                $eventSponsor = $event->getSponsor();
-                $eventPrice = $event->getEventPrice();
+                $titlu = $event->getTitluEveniment();
+                $descriere = $event->getDescriereEveniment();
+                $dataOra = $event->getDataEveniment();
+                $locatie = $event->getLocatie();
+                $partener = $event->getPartener();
+                $sponsor = $event->getSponsor();
+                $pretBilet = $event->getPretEveniment();
                 echo "
                     <tr>
                       <td>$eventId</td>
-                      <td>$eventTitle</td>
-                      <td>$eventDescription</td>
-                      <td>$eventDateTime</td>
-                      <td>$eventLocation</td>
-                      <td>$eventPartner</td>
-                      <td>$eventSponsor</td>
-                      <td>$eventPrice</td>
+                      <td>$titlu</td>
+                      <td>$descriere</td>
+                      <td>$dataOra</td>
+                      <td>$locatie</td>
+                      <td>$partener</td>
+                      <td>$sponsor</td>
+                      <td>$pretBilet</td>
                         <td>
                            <a class='btn btn-primary btn-sm' href='buy-ticket.php?id=$eventId'>Cumpara bilet</a>
                         </td>

@@ -5,12 +5,12 @@
         header('Location: http://localhost/php-events/view/ui/events/events.php');
     }
     
-    include("../../../database/DatabaseConnection.php");
-    include("../../../database/dao/AdministratorDAO.php");
-    include("../../../classes/models/Administrator.php");
+    include("../../../database/ConexiuneDB.php");
+    include("../../../database/acces-db/AdministratorDB.php");
+    include("../../../clase/entitati-db/Administrator.php");
     
-    $dbConnection = new DatabaseConnection();
-    $administratorDAO = new AdministratorDAO($dbConnection);
+    $dbConnection = new ConexiuneDB();
+    $administratorDAO = new AdministratorDB($dbConnection);
     $admin = new Administrator();
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

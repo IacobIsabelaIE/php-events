@@ -7,7 +7,7 @@ namespace Stripe;
 /**
  * Events are our way of letting you know when something interesting happens in
  * your account. When an interesting event occurs, we create a new
- * <code>Event</code> object. For example, when a charge succeeds, we create a
+ * <code>Eveniment</code> object. For example, when a charge succeeds, we create a
  * <code>charge.succeeded</code> event; and when an invoice payment attempt fails,
  * we create an <code>invoice.payment_failed</code> event. Note that many API
  * requests may cause multiple events to be created. For example, if you create a
@@ -25,7 +25,7 @@ namespace Stripe;
  * href="https://stripe.com/docs/api#list_events">list of events</a> from the API.
  * We also have a separate <a
  * href="http://en.wikipedia.org/wiki/Webhook">webhooks</a> system for sending the
- * <code>Event</code> objects directly to an endpoint on your server. Webhooks are
+ * <code>Eveniment</code> objects directly to an endpoint on your server. Webhooks are
  * managed in your <a href="https://dashboard.stripe.com/account/webhooks">account
  * settings</a>, and our <a href="https://stripe.com/docs/webhooks">Using
  * Webhooks</a> guide will help you get set up.
@@ -33,10 +33,10 @@ namespace Stripe;
  * When using <a href="https://stripe.com/docs/connect">Connect</a>, you can also
  * receive notifications of events that occur in connected accounts. For these
  * events, there will be an additional <code>account</code> attribute in the
- * received <code>Event</code> object.
+ * received <code>Eveniment</code> object.
  *
  * <strong>NOTE:</strong> Right now, access to events through the <a
- * href="https://stripe.com/docs/api#retrieve_event">Retrieve Event API</a> is
+ * href="https://stripe.com/docs/api#retrieve_event">Retrieve Eveniment API</a> is
  * guaranteed only for 30 days.
  *
  * @property string $id Unique identifier for the object.

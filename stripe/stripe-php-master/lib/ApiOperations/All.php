@@ -5,7 +5,7 @@ namespace Stripe\ApiOperations;
 /**
  * Trait for listable resources. Adds a `all()` static method to the class.
  *
- * This trait should only be applied to classes that derive from StripeObject.
+ * This trait should only be applied to clase that derive from StripeObject.
  */
 trait All
 {

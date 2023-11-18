@@ -1,6 +1,6 @@
 <?php
     
-    class EventDAO
+    class EvenimentDB
     {
         
         private $dbConnection;
@@ -8,12 +8,12 @@
         /**
          * @param $dbConnection
          */
-        public function __construct(DatabaseConnection $dbConnection)
+        public function __construct(ConexiuneDB $dbConnection)
         {
             $this->dbConnection = $dbConnection;
         }
         
-        public function getAllEvents()
+        public function cautaToateEvenimentele()
         {
             $events = array();
             $mysqlInstance = $this->dbConnection->connect();
@@ -21,15 +21,15 @@
             
             if ($fetchedEvents->num_rows > 0) {
                 while ($result = $fetchedEvents->fetch_assoc()) {
-                    $event = new Event();
+                    $event = new Eveniment();
                     $event->setEventId($result["id"]);
-                    $event->setEventTitle($result["titlu"]);
-                    $event->setEventDescription($result["descriere"]);
-                    $event->setDateTime($result["data_ora"]);
-                    $event->setLocation($result["locatie"]);
-                    $event->setPartner($result["parteneri"]);
+                    $event->setTitluEveniment($result["titlu"]);
+                    $event->setDescriereEveniment($result["descriere"]);
+                    $event->setDataEveniment($result["data_ora"]);
+                    $event->setLocatie($result["locatie"]);
+                    $event->setPartener($result["parteneri"]);
                     $event->setSponsor($result["sponsori"]);
-                    $event->setEventPrice($result["pret"]);
+                    $event->setPretEveniment($result["pret"]);
                     array_push($events, $event);
                 }
             }
@@ -38,7 +38,7 @@
             return $events;
         }
         
-        public function getEventById($id)
+        public function cautaEvenimentDupaId($id)
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("SELECT * from eveniment where id = ?");
@@ -47,19 +47,19 @@
             $preparedStatement->execute();
             $queryResult = $preparedStatement->get_result();
             $fetchedResult = $queryResult->fetch_assoc();
-            $event = new Event();
+            $event = new Eveniment();
             
             if (!$fetchedResult) {
                 header("location: index-event.php");
             } else {
                 $event->setEventId($fetchedResult["id"]);
-                $event->setEventTitle($fetchedResult["titlu"]);
-                $event->setEventDescription($fetchedResult["descriere"]);
-                $event->setDateTime($fetchedResult["data_ora"]);
+                $event->setTitluEveniment($fetchedResult["titlu"]);
+                $event->setDescriereEveniment($fetchedResult["descriere"]);
+                $event->setDataEveniment($fetchedResult["data_ora"]);
                 $event->setSponsor($fetchedResult["sponsori"]);
-                $event->setPartner($fetchedResult["parteneri"]);
-                $event->setLocation($fetchedResult["locatie"]);
-                $event->setEventPrice($fetchedResult["pret"]);
+                $event->setPartener($fetchedResult["parteneri"]);
+                $event->setLocatie($fetchedResult["locatie"]);
+                $event->setPretEveniment($fetchedResult["pret"]);
             }
             
             $preparedStatement->close();
@@ -67,28 +67,28 @@
             return $event;
         }
         
-        public function addNewEvent(Event $event)
+        public function adaugaEveniment(Eveniment $event)
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("INSERT INTO eveniment
             (titlu, descriere, data_ora, locatie, parteneri, sponsori, pret) VALUES
             (?, ?, ?, ?, ?, ?, ?)");
             
-            $preparedStatement->bind_param("ssssssi", $eventTitle,
-                $eventDescription, $dateTime, $location,
-                $partner, $sponsor, $price);
+            $preparedStatement->bind_param("ssssssi", $titluEveniment,
+                $descriereEveniment, $dataEveniment, $locatie,
+                $partener, $sponsor, $pretBiletEveniment);
             
-            $eventTitle = $event->getEventTitle();
-            $eventDescription = $event->getEventDescription();
-            $dateTime = $event->getDateTime();
-            $partner = $event->getPartner();
+            $titluEveniment = $event->getTitluEveniment();
+            $descriereEveniment = $event->getDescriereEveniment();
+            $dataEveniment = $event->getDataEveniment();
+            $partener = $event->getPartener();
             $sponsor = $event->getSponsor();
-            $location = $event->getLocation();
-            $price = $event->getEventPrice();
+            $locatie = $event->getLocatie();
+            $pretBiletEveniment = $event->getPretEveniment();
             
-            $isInsertSuccessful = $preparedStatement->execute();
+            $succesInserare = $preparedStatement->execute();
             
-            if (!$isInsertSuccessful) {
+            if (!$succesInserare) {
                 print("Am intampinat o eroare la adaugarea eventului={" . $preparedStatement->error . "}");
             } else {
                 print("Am adaugat evenimentul dorit!");
@@ -98,28 +98,28 @@
             $mysqlInstance->close();
         }
         
-        public function updateEvent(Event $event)
+        public function updateEveniment(Eveniment $event)
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("UPDATE eveniment SET titlu = ?, descriere = ?, data_ora = ?,
                      locatie = ?, parteneri = ?, sponsori = ?, pret = ? WHERE id = ?");
             
-            $preparedStatement->bind_param("ssssssii", $eventTitle,
-                $eventDescription, $dateTime, $location,
-                $partner, $sponsor, $eventPrice, $id);
+            $preparedStatement->bind_param("ssssssii", $titluEveniment,
+                $descriereEveniment, $dataEveniment, $locatie,
+                $partner, $sponsor, $pretBiletEveniment, $id);
             
-            $eventTitle = $event->getEventTitle();
-            $eventDescription = $event->getEventDescription();
-            $dateTime = $event->getDateTime();
-            $partner = $event->getPartner();
+            $titluEveniment = $event->getTitluEveniment();
+            $descriereEveniment = $event->getDescriereEveniment();
+            $dataEveniment = $event->getDataEveniment();
+            $partener = $event->getPartener();
             $sponsor = $event->getSponsor();
-            $location = $event->getLocation();
-            $eventPrice = $event->getEventPrice();
+            $locatie = $event->getLocatie();
+            $pretBiletEveniment = $event->getPretEveniment();
             $id = $event->getEventId();
             
-            $isInsertSuccessful = $preparedStatement->execute();
+            $succesInserare = $preparedStatement->execute();
             
-            if (!$isInsertSuccessful) {
+            if (!$succesInserare) {
                 print("Am intampinat o eroare la editarea eventului={" . $preparedStatement->error . "}");
                 return false;
             } else {
@@ -131,7 +131,7 @@
             return true;
         }
         
-        public function deleteEvent($id)
+        public function stergeEveniment($id)
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("DELETE from eveniment WHERE id = ?");

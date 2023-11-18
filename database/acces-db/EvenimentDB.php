@@ -106,7 +106,7 @@
             
             $preparedStatement->bind_param("ssssssii", $titluEveniment,
                 $descriereEveniment, $dataEveniment, $locatie,
-                $partner, $sponsor, $pretBiletEveniment, $id);
+                $partener, $sponsor, $pretBiletEveniment, $id);
             
             $titluEveniment = $event->getTitluEveniment();
             $descriereEveniment = $event->getDescriereEveniment();

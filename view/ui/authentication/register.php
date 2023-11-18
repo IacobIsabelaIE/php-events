@@ -5,6 +5,10 @@
     include("../../../clase/entitati-db/Administrator.php");
     include("../../../validation/ValidatorAdministrator.php");
     
+    if (!isset($_SESSION["nutilizator"]) && !isset($_SESSION["id"])) {
+        header('Location: http://localhost/php-events/view/ui/events/events.php');
+    }
+    
     $dbConnection = new ConexiuneDB();
     $administratorDAO = new AdministratorDB($dbConnection);
     $admin = new Administrator();
@@ -27,7 +31,7 @@
 <body>
 <form method="post" class="form_class">
     <div>
-        <h1>Inregistreaza-te</h1>
+        <h1>Inregistreaza un administrator</h1>
         <div class="login_div">
             <input type="text" name="nutilizator" placeholder="Nume utilizator">
         </div>
@@ -45,10 +49,10 @@
         </div>
     </div>
     <div>
-        <button type="submit" name="submit" class="button_login">Inregistreaza-te ca administrator</button>
+        <button type="submit" name="submit" class="button_login">Inregistreaza un nou administratorr</button>
     </div>
     <div class="login_div">
-        <a href="login.php"> Ai deja un cont? Click aici pentru a te loga!</a>
+        <a href="login.php">Mergi spre logare</a>
     </div>
 </form>
 </body>

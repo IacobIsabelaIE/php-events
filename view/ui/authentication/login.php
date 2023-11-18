@@ -31,24 +31,16 @@
 <form method="post" class="form_class">
 
     <div>
-        <h1>LOGIN</h1>
-        
-
+        <h1>Autentificare</h1>
         <div class="login_div">
             <input type="email" name="email" placeholder="E-mail" class="input">
-
         </div>
-
         <div class="login_div">
             <input type="password" name="password" placeholder="Parola" class="input">
-
         </div>
-
-        <button type="submit" name="submit" class="button_login">LOGIN</button>
-
+        <button type="submit" name="submit" class="button_login">Logheaza-te</button>
         <div class="login_div">
-            <a href="index.php"> Create an account</a> <br>
-
+            <a href="register.php">Nu ai cont? Click pentru a te inregistra</a> <br>
         </div>
     </div>
 

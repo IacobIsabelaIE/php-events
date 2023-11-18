@@ -29,6 +29,7 @@
                     $event->setLocation($result["locatie"]);
                     $event->setPartner($result["parteneri"]);
                     $event->setSponsor($result["sponsori"]);
+                    $event->setEventPrice($result["pret"]);
                     array_push($events, $event);
                 }
             }
@@ -58,6 +59,7 @@
                 $event->setSponsor($fetchedResult["sponsori"]);
                 $event->setPartner($fetchedResult["parteneri"]);
                 $event->setLocation($fetchedResult["locatie"]);
+                $event->setEventPrice($fetchedResult["pret"]);
             }
             
             $preparedStatement->close();
@@ -69,12 +71,12 @@
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("INSERT INTO eveniment
-            (titlu, descriere, data_ora, locatie, parteneri, sponsori) VALUES
-            (?, ?, ?, ?, ?, ?)");
+            (titlu, descriere, data_ora, locatie, parteneri, sponsori, pret) VALUES
+            (?, ?, ?, ?, ?, ?, ?)");
             
-            $preparedStatement->bind_param("ssssss", $eventTitle,
+            $preparedStatement->bind_param("ssssssi", $eventTitle,
                 $eventDescription, $dateTime, $location,
-                $partner, $sponsor);
+                $partner, $sponsor, $price);
             
             $eventTitle = $event->getEventTitle();
             $eventDescription = $event->getEventDescription();
@@ -82,6 +84,7 @@
             $partner = $event->getPartner();
             $sponsor = $event->getSponsor();
             $location = $event->getLocation();
+            $price = $event->getEventPrice();
             
             $isInsertSuccessful = $preparedStatement->execute();
             
@@ -99,11 +102,11 @@
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("UPDATE eveniment SET titlu = ?, descriere = ?, data_ora = ?,
-                     locatie = ?, parteneri = ?, sponsori = ? WHERE id = ?");
+                     locatie = ?, parteneri = ?, sponsori = ?, pret = ? WHERE id = ?");
             
-            $preparedStatement->bind_param("ssssssi", $eventTitle,
+            $preparedStatement->bind_param("ssssssii", $eventTitle,
                 $eventDescription, $dateTime, $location,
-                $partner, $sponsor, $id);
+                $partner, $sponsor, $eventPrice, $id);
             
             $eventTitle = $event->getEventTitle();
             $eventDescription = $event->getEventDescription();
@@ -111,6 +114,7 @@
             $partner = $event->getPartner();
             $sponsor = $event->getSponsor();
             $location = $event->getLocation();
+            $eventPrice = $event->getEventPrice();
             $id = $event->getEventId();
             
             $isInsertSuccessful = $preparedStatement->execute();

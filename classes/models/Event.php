@@ -10,6 +10,23 @@
         private $location;
         private $partner;
         private $sponsor;
+        private $eventPrice;
+        
+        /**
+         * @return mixed
+         */
+        public function getEventPrice()
+        {
+            return $this->eventPrice;
+        }
+        
+        /**
+         * @param mixed $eventPrice
+         */
+        public function setEventPrice($eventPrice)
+        {
+            $this->eventPrice = $eventPrice;
+        }
         
         /**
          * @return mixed
@@ -26,7 +43,6 @@
         {
             $this->eventId = $eventId;
         }
-        
         
         
         /**
@@ -124,7 +140,5 @@
         {
             $this->sponsor = $sponsor;
         }
-        
-        
         
     }

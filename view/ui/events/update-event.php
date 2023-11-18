@@ -10,7 +10,7 @@
     }
     
     $dbConnection = new DatabaseConnection();
-    $eventRepository = new EventDAO($dbConnection);
+    $eventDAO = new EventDAO($dbConnection);
     $event = new Event();
     $eventValidator = new EventValidator();
     
@@ -21,7 +21,7 @@
         }
         
         $id = $_GET["id"];
-        $event = $eventRepository->getEventById($id);
+        $event = $eventDAO->getEventById($id);
         
     } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $event->setEventId($_POST["id"]);
@@ -31,9 +31,10 @@
         $event->setLocation($_POST["locatie"]);
         $event->setPartner($_POST["parteneri"]);
         $event->setSponsor($_POST["sponsori"]);
+        $event->setEventPrice($_POST["pret"]);
         
         $eventValidator::validateEvent($event);
-        $success = $eventRepository->updateEvent($event);
+        $success = $eventDAO->updateEvent($event);
         
         if ($success) {
             header("location: index-event.php");
@@ -99,6 +100,12 @@
             <label class="col-sm-3 col-form-label">Sponsori</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="sponsori" value="<?php echo $event->getSponsor(); ?>">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Pret bilet eveniment</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="pret" value="<?php echo $event->getEventPrice(); ?>">
             </div>
         </div>
         <?php

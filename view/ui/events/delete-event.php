@@ -11,8 +11,8 @@
     if (isset($_GET["id"])) {
         $id = $_GET["id"];
         $dbConnection = new DatabaseConnection();
-        $eventRepository = new EventDAO($dbConnection);
-        $result = $eventRepository->deleteEvent($id);
+        $eventDAO = new EventDAO($dbConnection);
+        $result = $eventDAO->deleteEvent($id);
         
         if (!$result) {
             echo "Am intampinat o problema la stergerea evenimentului";

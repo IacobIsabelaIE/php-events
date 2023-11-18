@@ -10,7 +10,7 @@
     }
     
     $dbConnection = new DatabaseConnection();
-    $eventRepository = new EventDAO($dbConnection);
+    $eventDAO = new EventDAO($dbConnection);
     $event = new Event();
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,9 +21,10 @@
         $event->setLocation($_POST["locatie"]);
         $event->setPartner($_POST["parteneri"]);
         $event->setSponsor($_POST["sponsori"]);
+        $event->setEventPrice($_POST["pret"]);
         
         EventValidator::validateEvent($event);
-        $eventRepository->addNewEvent($event);
+        $eventDAO->addNewEvent($event);
         
     }
 ?>
@@ -90,8 +91,15 @@
                 <input type="text" class="form-control" name="sponsori">
             </div>
         </div>
-        
-        
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Pret</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="pret">
+            </div>
+        </div>
+
+
         <?php
             if (!empty($successMessage)) {
                 echo "

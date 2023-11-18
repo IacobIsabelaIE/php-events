@@ -17,6 +17,11 @@
         $admin->setEmail($_POST["email"]);
         $admin->setPassword($_POST["password"]);
         $loginSuccessful = $administratorDAO->loginAdministrator($admin);
+        
+        if ($loginSuccessful) {
+            header('Location: http://localhost/php-events/view/ui/events/index-event.php');
+        }
+        
     }
 ?>
 

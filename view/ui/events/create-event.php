@@ -1,9 +1,13 @@
 <?php
-    
+    session_start();
     include("../../../database/DatabaseConnection.php");
     include("../../../database/dao/EventDAO.php");
     include("../../../classes/models/Event.php");
     include("../../../validation/EventValidator.php");
+    
+    if (!isset($_SESSION["nutilizator"]) && !isset($_SESSION["id"])) {
+        header('Location: http://localhost/php-events/view/ui/authentication/login.php');
+    }
     
     $dbConnection = new DatabaseConnection();
     $eventRepository = new EventDAO($dbConnection);

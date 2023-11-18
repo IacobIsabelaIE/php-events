@@ -96,10 +96,4 @@
             return true;
         }
         
-        public function logoutAdministrator() {
-            unset($_SESSION["nutilizator"]);
-            unset($_SESSION["id"]);
-            session_destroy();
-        }
-        
     }

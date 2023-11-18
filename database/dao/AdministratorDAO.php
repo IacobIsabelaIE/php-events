@@ -13,7 +13,30 @@
             $this->dbConnection = $dbConnection;
         }
         
-        public function addAdministrator(Administrator $administrator) {
+        public function doesAdministratorExist(Administrator $administrator): bool
+        {
+            
+            $mysqlInstance = $this->dbConnection->connect();
+            $preparedStatement = $mysqlInstance->prepare('SELECT nume_utilizator FROM administrator WHERE nume_utilizator = ? OR e_mail = ?');
+            $userName = $administrator->getUserName();
+            $email = $administrator->getEmail();
+            
+            $preparedStatement->bind_param("ss", $userName, $email);
+            $preparedStatement->execute();
+            $queryResult = $preparedStatement->get_result();
+            $fetchedResult = $queryResult->fetch_assoc();
+            
+            $preparedStatement->close();
+            $mysqlInstance->close();
+            
+            if ($fetchedResult) {
+                return true;
+            }
+            return false;
+        }
+        
+        public function addAdministrator(Administrator $administrator)
+        {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("INSERT INTO administrator(nume_utilizator, nume,
                           prenume, e_mail, password_hash) VALUES(?,?,?,?,?);");
@@ -37,5 +60,11 @@
             $preparedStatement->close();
             $mysqlInstance->close();
         }
+        
+        public function loginAdministrator(Administrator $administrator)
+        {
+        
+        }
+        
         
     }

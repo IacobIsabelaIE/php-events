@@ -8,7 +8,6 @@
     $dbConnection = new DatabaseConnection();
     $eventRepository = new EventDAO($dbConnection);
     $event = new Event();
-    $eventValidator = new EventValidator();
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
@@ -19,7 +18,7 @@
         $event->setPartner($_POST["parteneri"]);
         $event->setSponsor($_POST["sponsori"]);
         
-        $eventValidator::validateEvent($event);
+        EventValidator::validateEvent($event);
         $eventRepository->addNewEvent($event);
         
     }

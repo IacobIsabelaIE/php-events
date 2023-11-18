@@ -105,6 +105,4 @@
             $this->password = $password;
         }
         
-        
-        
     }

@@ -19,17 +19,13 @@
         $loginSuccessful = $administratorDAO->loginAdministrator($admin);
     }
 ?>
+
 <html>
 <head>
-
-    <title>TEST</title>
-    <!--    <link rel="stylesheet" href="css/login.css">-->
-
+    <title>Autentificare</title>
 </head>
-
 <body>
 <form method="post" class="form_class">
-
     <div>
         <h1>Autentificare</h1>
         <div class="login_div">

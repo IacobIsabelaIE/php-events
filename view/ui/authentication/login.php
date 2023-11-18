@@ -9,14 +9,14 @@
     include("../../../database/acces-db/AdministratorDB.php");
     include("../../../clase/entitati-db/Administrator.php");
     
-    $dbConnection = new ConexiuneDB();
-    $administratorDAO = new AdministratorDB($dbConnection);
+    $conexiuneDB = new ConexiuneDB();
+    $administratorDB = new AdministratorDB($conexiuneDB);
     $admin = new Administrator();
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $admin->setEmail($_POST["email"]);
         $admin->setPassword($_POST["password"]);
-        $loginSuccessful = $administratorDAO->loginAdministrator($admin);
+        $loginSuccessful = $administratorDB->loginAdministrator($admin);
         
         if ($loginSuccessful) {
             header('Location: http://localhost/php-events/view/ui/events/index-event.php');

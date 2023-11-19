@@ -10,12 +10,12 @@
 <html lang="en">
 <head>
     <title>Home</title>
-    <link rel="stylesheet" href="../../css/style-index.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <div class="container my-5">
     <h2>Evenimente disponibile</h2>
-    <a class="btn btn-primary" href="create-event.php" role="button">Noi evenimente</a>
+    <a class="btn btn-primary" href="create-event.php" role="button">Consulta lista cu speakeri</a>
     <br>
     <table class="table">
         <thead>
@@ -28,6 +28,11 @@
             <th>Parteneri</th>
             <th>Sponsori</th>
             <th>Pret</th>
+            <th>Bilete</th>
+            <th>Detalii</th>
+
+
+
         </tr>
         </thead>
         <tbody>
@@ -57,6 +62,9 @@
                       <td>$pretBilet</td>
                         <td>
                            <a class='btn btn-primary btn-sm' href='buy-ticket.php?id=$eventId'>Cumpara bilet</a>
+                        </td>
+                        <td>
+                           <a class='btn btn-primary btn-sm' href='single-event?id=$eventId'>Vezi detalii eveniment</a>
                         </td>
                     </tr>
                     ";

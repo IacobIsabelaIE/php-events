@@ -28,6 +28,8 @@
 <html>
 <head>
     <title>Autentificare</title>
+    <link rel="stylesheet" href="../../css/login.css">
+
 </head>
 <body>
 <form method="post" class="form_class">

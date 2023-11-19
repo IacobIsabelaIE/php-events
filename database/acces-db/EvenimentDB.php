@@ -29,6 +29,7 @@
                     $event->setLocatie($result["locatie"]);
                     $event->setPartener($result["parteneri"]);
                     $event->setSponsor($result["sponsori"]);
+                    $event->setSpeaker($result["speakeri"]);
                     $event->setPretEveniment($result["pret"]);
                     array_push($events, $event);
                 }
@@ -58,6 +59,7 @@
                 $event->setDataEveniment($fetchedResult["data_ora"]);
                 $event->setSponsor($fetchedResult["sponsori"]);
                 $event->setPartener($fetchedResult["parteneri"]);
+                $event->setSpeaker($fetchedResult["speakeri"]);
                 $event->setLocatie($fetchedResult["locatie"]);
                 $event->setPretEveniment($fetchedResult["pret"]);
             }
@@ -71,18 +73,19 @@
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("INSERT INTO eveniment
-            (titlu, descriere, data_ora, locatie, parteneri, sponsori, pret) VALUES
-            (?, ?, ?, ?, ?, ?, ?)");
+            (titlu, descriere, data_ora, locatie, parteneri, sponsori, speakeri, pret) VALUES
+            (?, ?, ?, ?, ?, ?, ?, ?)");
             
-            $preparedStatement->bind_param("ssssssi", $titluEveniment,
+            $preparedStatement->bind_param("sssssssi", $titluEveniment,
                 $descriereEveniment, $dataEveniment, $locatie,
-                $partener, $sponsor, $pretBiletEveniment);
+                $partener, $sponsor, $speaker, $pretBiletEveniment);
             
             $titluEveniment = $event->getTitluEveniment();
             $descriereEveniment = $event->getDescriereEveniment();
             $dataEveniment = $event->getDataEveniment();
             $partener = $event->getPartener();
             $sponsor = $event->getSponsor();
+            $speaker = $event->getSpeaker();
             $locatie = $event->getLocatie();
             $pretBiletEveniment = $event->getPretEveniment();
             
@@ -102,17 +105,18 @@
         {
             $mysqlInstance = $this->dbConnection->connect();
             $preparedStatement = $mysqlInstance->prepare("UPDATE eveniment SET titlu = ?, descriere = ?, data_ora = ?,
-                     locatie = ?, parteneri = ?, sponsori = ?, pret = ? WHERE id = ?");
+                     locatie = ?, parteneri = ?, sponsori = ?, speakeri=?,  pret = ? WHERE id = ?");
             
-            $preparedStatement->bind_param("ssssssii", $titluEveniment,
+            $preparedStatement->bind_param("sssssssii", $titluEveniment,
                 $descriereEveniment, $dataEveniment, $locatie,
-                $partener, $sponsor, $pretBiletEveniment, $id);
+                $partener, $sponsor, $speaker, $pretBiletEveniment, $id);
             
             $titluEveniment = $event->getTitluEveniment();
             $descriereEveniment = $event->getDescriereEveniment();
             $dataEveniment = $event->getDataEveniment();
             $partener = $event->getPartener();
             $sponsor = $event->getSponsor();
+            $speaker = $event->getSpeaker();
             $locatie = $event->getLocatie();
             $pretBiletEveniment = $event->getPretEveniment();
             $id = $event->getEventId();
@@ -144,4 +148,17 @@
             return $result;
         }
         
+//      public function getSponsori() {
+//          $conexiune = new ConexiuneDB();
+//          $query = "SELECT id, nume FROM sponsor";
+//            $result = $this->$conexiune->query($query);
+//
+//            $sponsori = array();
+//            while ($row = $result->fetch_assoc()) {
+//                $sponsori[] = $row;
+//            }
+//
+//            return $sponsori;
+//}
+
     }

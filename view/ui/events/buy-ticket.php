@@ -39,7 +39,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../css/style-update.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <title>Cumpara bilet</title>
 </head>
 <body>
@@ -73,7 +73,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <div class="col-sm-3 d-grid">
-                <a class="btn btn-outline-primary" href="index-event.php" role="button">Cancel</a>
+                <a class="btn btn-primary" href="events.php" role="button">Cancel</a>
             </div>
         </div>
     </form>

@@ -10,6 +10,23 @@
         private $locatie;
         private $partener;
         private $sponsor;
+        private $speaker;
+        
+        /**
+         * @return mixed
+         */
+        public function getSpeaker()
+        {
+            return $this->speaker;
+        }
+        
+        /**
+         * @param mixed $speaker
+         */
+        public function setSpeaker($speaker)
+        {
+            $this->speaker = $speaker;
+        }
         private $pretEveniment;
         
         /**

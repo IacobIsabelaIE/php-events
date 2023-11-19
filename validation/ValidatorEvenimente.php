@@ -15,7 +15,7 @@
             
             if (empty($event->getTitluEveniment()) || empty($event->getDescriereEveniment() ||
                     empty($event->getDataEveniment() || empty($event->getLocatie() ||
-                            empty($event->getSponsor() || empty($event->getPartener() || empty($event->getPretEveniment()))))))) {
+                            empty($event->getSponsor() || empty($event->getPartener()|| empty($event->getSpeaker()) || empty($event->getPretEveniment()))))))) {
                 print(self::DATE_INTRARE_INVALIDE);
                 exit;
             }
